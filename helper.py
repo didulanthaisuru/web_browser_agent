@@ -2,7 +2,7 @@
 
 import os
 from dotenv import load_dotenv, find_dotenv
-from openai import OpenAI
+import google.generativeai as genai
 from multion.client import MultiOn
 import base64
 from io import BytesIO
@@ -15,12 +15,13 @@ def load_env():
 
 def get_openai_api_key():
     load_env()
-    openai_api_key = os.getenv("OPENAI_API_KEY")
+    openai_api_key = os.getenv("GEMINI_API")
     return openai_api_key
     
 def get_openai_client():
     openai_api_key = get_openai_api_key()
-    return OpenAI(api_key=openai_api_key)
+    genai.configure(api_key=openai_api_key)
+    return genai.GenerativeModel("gemini-pro")
 
 def get_multi_on_api_key():
     load_env()
@@ -90,4 +91,4 @@ async def visualizeCourses(result, screenshot, target_url, instructions, base_ur
         display(Markdown("### Website Screenshot:"))
         display(HTML(img_html))
 
-
+print("work")
