@@ -15,13 +15,13 @@ def load_env():
 
 def get_openai_api_key():
     load_env()
-    openai_api_key = os.getenv("GEMINI_API")
+    openai_api_key = os.getenv("GOOGLE_API_KEY")
     return openai_api_key
     
 def get_openai_client():
     openai_api_key = get_openai_api_key()
-    genai.configure(api_key=openai_api_key)
-    return genai.GenerativeModel("gemini-pro")
+    genai.configure(api_key="AIzaSyA_Z8gMmZrpZmI81BtTJoDtPbLv88QZsSA")
+    return genai.GenerativeModel("gemini-1.5-flash")
 
 def get_multi_on_api_key():
     load_env()

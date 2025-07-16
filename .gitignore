@@ -1,4 +1,4 @@
 web_agent_venv/
 
 .env
-__pycache__/
+__pycache__
