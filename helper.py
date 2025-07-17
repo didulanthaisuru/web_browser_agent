@@ -82,13 +82,17 @@ async def visualizeCourses(result, screenshot, target_url, instructions, base_ur
         display(Markdown("### Scraped Course Data:"))
         display(HTML(table_html))
 
-        # Convert the screenshot bytes into a base64 string and embed it in an <img> tag
-        img_b64 = base64.b64encode(screenshot).decode('utf-8')
-        img_html = (
-            f'<img src="data:image/png;base64,{img_b64}" '
-            f'alt="Website Screenshot" style="max-width:100%; height:auto;">'
-        )
-        display(Markdown("### Website Screenshot:"))
-        display(HTML(img_html))
+        # Convert the screenshot bytes into a base64 string and embed it in an <img> tag (if available)
+        if screenshot:
+            img_b64 = base64.b64encode(screenshot).decode('utf-8')
+            img_html = (
+                f'<img src="data:image/png;base64,{img_b64}" '
+                f'alt="Website Screenshot" style="max-width:100%; height:auto;">'
+            )
+            display(Markdown("### Website Screenshot:"))
+            display(HTML(img_html))
+        else:
+            display(Markdown("### No Screenshot Available"))
+            display(Markdown("Screenshot was not captured (using simple HTTP scraper instead of browser)."))
 
 print("work")
